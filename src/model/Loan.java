@@ -1,7 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class Loan {
@@ -10,18 +8,17 @@ public class Loan {
     Date endDate;
     boolean returned;
 
+    //constructor
     Loan(){
 
     }
     public Loan(Book book){
         this.book = book;
         this.startDate = new Date();
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        LocalDate localDate = LocalDate.now();
-        this.endDate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
         this.returned = false;
     }
 
+    //get & set
     public Book getBook() {
         return book;
     }
@@ -46,5 +43,20 @@ public class Loan {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
+    public boolean deliverBack(Book book){
+        //if it has already been returned, you cannot return again
+        //if not, set the end date and return
+        
+        if(returned){
+            return false;
+        }
+
+        setEndDate(new Date());
+        setReturned(true);
+
+        return true;
+    }
+
 
 }

@@ -6,6 +6,13 @@ public class Book {
     int nr_copies;
     String author;
 
+    public Book(String title, int year, int nr_copies, String author) {
+        this.title=title;
+        this.year=year;
+        this.nr_copies=nr_copies;
+        this.author=author;
+    }
+    //get & set
     public String getAuthor() {
         return author;
     }
